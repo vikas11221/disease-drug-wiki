@@ -1,0 +1,39 @@
+version: "3.0"
+services:
+  elasticsearch:
+    container_name: es-container
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.1.0
+    environment:
+      - xpack.security.enabled=false
+      - "discovery.type=single-node"
+    networks:
+      - es-net
+    ports:
+      - 9200:9200
+    healthcheck:
+        test: ["CMD", "curl", "-f", "http://localhost:9200"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+  ui:
+    build: ./disease-wiki-ui
+    volumes:
+      - ./usr/local/ui/
+    ports:
+      - "4200:80"
+  api:
+    restart: always
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      ui:
+        condition: service_started
+    build:
+      context: ./disease-wiki-api
+    volumes:
+      - ./usr/local/api/
+    ports:
+      - "4100:4100"
+networks:
+  es-net:
+    driver: bridge

@@ -1,0 +1,91 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type KnowledgeBase {
+  """Drug database identifier"""
+  id: String!
+
+  """Name of the drug"""
+  name: String!
+
+  """List of diseases"""
+  diseases: [String!]!
+
+  """Description of the drug"""
+  description: String!
+
+  """Released date of the drug"""
+  released: String!
+}
+
+type UpdateKnowledgeBase {
+  """Total matched docs"""
+  total: Float!
+
+  """Deleted docs"""
+  updated: Float!
+}
+
+type RemoveKnowledgeBase {
+  """Total matched docs"""
+  total: Float!
+
+  """Deleted docs"""
+  deleted: Float!
+}
+
+type CreateKnowledgeBase {
+  """ID of the doc"""
+  id: String!
+
+  """Total"""
+  total: Float!
+
+  """Successful"""
+  successful: Float!
+
+  """Failed"""
+  failed: Float!
+}
+
+type Query {
+  knowledgeBase(searchText: String): [KnowledgeBase!]
+}
+
+type Mutation {
+  createKnowledgeBase(createKnowledgeBaseInput: CreateKnowledgeBaseInput!): CreateKnowledgeBase!
+  updateKnowledgeBase(updateKnowledgeBaseInput: UpdateKnowledgeBaseInput!): UpdateKnowledgeBase!
+  removeKnowledgeBase(id: String!): RemoveKnowledgeBase!
+}
+
+input CreateKnowledgeBaseInput {
+  """Name of the drug"""
+  name: String!
+
+  """List of diseases"""
+  diseases: [String!]!
+
+  """Description of the drug"""
+  description: String!
+
+  """Released date of the drug"""
+  released: String!
+}
+
+input UpdateKnowledgeBaseInput {
+  """Name of the drug"""
+  name: String!
+
+  """List of diseases"""
+  diseases: [String!]!
+
+  """Description of the drug"""
+  description: String!
+
+  """Released date of the drug"""
+  released: String!
+
+  """Drug database identifier"""
+  id: String!
+}

@@ -1,0 +1,17 @@
+{
+  "settings": {
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "properties": {
+      "id": { "type": "text" },
+      "diseases": { "type": "text" },
+      "description": { "type": "text" },
+      "name": { "type": "text" },
+      "released": {
+        "type": "date",
+        "format": "yyyy-MM-dd"
+      }
+    }
+  }
+}

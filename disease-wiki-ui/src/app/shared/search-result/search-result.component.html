@@ -1,0 +1,26 @@
+<div class="search-result" *ngIf="searchResults?.length">
+  <span> Showing {{ searchResults?.length }} results </span>
+
+  <div class="card mt-3" *ngFor="let searchResult of searchResults">
+    <div class="card-body">
+      <div class="col-md-12 d-flex justify-content-between content-center">
+        <div class="card-title">
+          <h5>{{ searchResult.name }}</h5>
+        </div>
+        <div>
+          {{ searchResult.released }}
+        </div>
+      </div>
+      
+      <div class="col-md-12 card-subtitle d-flex d-inline-flex ms-n1">
+          <ul *ngFor="let disease of searchResult.diseases">
+              <li>{{disease}}</li>
+          </ul>
+        </div>
+
+      <p class="card-text">
+        {{ searchResult.description }}
+      </p>
+    </div>
+  </div>
+</div>
